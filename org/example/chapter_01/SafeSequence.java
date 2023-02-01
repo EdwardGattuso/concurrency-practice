@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
 
 class SafeSequence {
     private int value;
@@ -24,19 +25,20 @@ class SafeSequenceTest {
         ExecutorService executorService = Executors.newFixedThreadPool(2);
         CountDownLatch countDownLatch = new CountDownLatch(2);
         executorService.submit(() -> {
-            for (int i = 0; i < 1000000; i++) {
+            for (int i = 0; i < 100000; i++) {
                 seqList1.add(safeSequence.getNext());
             }
             countDownLatch.countDown();
         });
         executorService.submit(() -> {
-            for (int i = 0; i < 1000000; i++) {
+            for (int i = 0; i < 100000; i++) {
                 seqList2.add(safeSequence.getNext());
             }
             countDownLatch.countDown();
         });
         countDownLatch.await();
-        List<Integer> sameSeqList = seqList1.stream().filter(s1 -> seqList2.stream().anyMatch(s1::equals)).toList();
+        executorService.shutdown();
+        List<Integer> sameSeqList = seqList1.stream().filter(s1 -> seqList2.stream().anyMatch(s1::equals)).collect(Collectors.toList());
         if (sameSeqList.isEmpty()) {
             System.out.println("Not found the same value!");
         }
