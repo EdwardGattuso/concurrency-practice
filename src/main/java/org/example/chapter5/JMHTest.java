@@ -1,6 +1,6 @@
-package org.example.chapter_05;
+package org.example.chapter5;
 
-import org.example.chapter_04.ImprovedMap;
+import org.example.chapter4.ImprovedMap;
 import org.openjdk.jmh.annotations.*;
 
 import java.io.IOException;
@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 
 @State(Scope.Benchmark)
 @Measurement(iterations = 10)
-public class MapPerformanceTest {
+public class JMHTest {
 
     @Fork(value = 2)
     @Benchmark

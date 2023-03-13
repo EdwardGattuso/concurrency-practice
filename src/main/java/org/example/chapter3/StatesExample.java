@@ -1,4 +1,4 @@
-package org.example.chapter_2_3;
+package org.example.chapter3;
 
 import java.util.Arrays;
 import java.util.concurrent.CountDownLatch;

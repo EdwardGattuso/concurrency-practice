@@ -1,4 +1,4 @@
-package org.example.chapter_04;
+package org.example.chapter4;
 
 import java.util.HashMap;
 import java.util.Map;

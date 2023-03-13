@@ -1,6 +1,5 @@
-package org.example.chapter_01;
+package org.example.chapter1;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
